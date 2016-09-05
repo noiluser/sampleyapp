@@ -8,5 +8,5 @@ app.config(function($routeProvider, $locationProvider) {
 	        //templateUrl : 'static/tmpl/notes.html',
 	        //controller  : 'NotesController'
 	    });
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 });
