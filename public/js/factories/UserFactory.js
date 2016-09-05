@@ -16,7 +16,7 @@ app.factory('User', function($http) {
 		var url = "oauth.yandex.ru";
 		var postParams = {
 			grant_type : "authorization_code",
-			code : code,
+			code : this.code,
 			client_id : "f18cbb797ecb4c648e9575377b071f52",
 			client_secret : "3ebcc764f18a41af86c2ebbf90dddb58"
 		};
