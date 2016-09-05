@@ -7,6 +7,11 @@ app.config(function($routeProvider, $locationProvider) {
 	    	template : "<div>hello</div>"
 	        //templateUrl : 'static/tmpl/notes.html',
 	        //controller  : 'NotesController'
+	    })
+	    .when('/disk', {
+	    	template : "<div>hello</div>"
+	        //templateUrl : 'static/tmpl/notes.html',
+	        //controller  : 'NotesController'
 	    });
     //$locationProvider.html5Mode(true);
 });
