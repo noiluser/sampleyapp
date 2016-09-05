@@ -7,31 +7,35 @@ app.factory('User', function($http) {
 		userPrivate.code = "";
 	}
 	
-	userPublic.setCode = function(code) {
-		userPrivate.code = code;
-		userPrivate.getUserInfo();
+	userPublic.setToken = function(paramStr, cb) {
+		var settings = paramStr.split(/[\=\&]+/);
+		for(var i = 0; i < settings.length; i+=2) {
+			userPrivate[settings[i]] = settings[i+1];
+		}
+		if(userPrivate.hasOwnProperty("access_token")) {
+			userPrivate.isAuthorized = true;
+			userPrivate.getUserData(cb);
+		}
 	};
 	// private
-	userPrivate.getUserInfo = function() {
-		var url = "http://oauth.yandex.ru/token";
-		var postParams = {
-			grant_type : "authorization_code",
-			code : this.code,
-			client_id : "f18cbb797ecb4c648e9575377b071f52",
-			client_secret : "3ebcc764f18a41af86c2ebbf90dddb58"
-		};
-		
-		$http.post(url, postParams)
-		   .then(
-		       function(response){
-		    	   console.log(response);
-		       }, 
-		       function(response){
-		    	   console.log(response);
-		       }
-		    );
-		
-	}
+	userPrivate.getUserData = function(cb) {
+		var url = "https://login.yandex.ru/info?oauth_token=" + this.access_token + "&callback=JSON_CALLBACK";
+		$http.jsonp(url).
+		    success(function(data, status, headers, config) {
+		    	console.log(data);
+		    	/*self.firstName = data.response[0].first_name;
+		    	self.lastName = data.response[0].last_name;
+		    	self.href = data.response[0].domain;
+		    	self.photo = data.response[0].photo_100;
+		    	self.hasPhoto = data.response[0].has_photo;
+		    	self.id = data.response[0].id;
+		    	if (cb)
+		    		cb();*/
+		    }).
+		    error(function(data, status, headers, config) {
+		        console.log(data);
+		    });
+	};
 	
 	/*
 	userPrivate.ver = "5.53";

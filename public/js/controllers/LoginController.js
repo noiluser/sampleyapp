@@ -48,16 +48,16 @@ app.controller("AuthController", function($scope, $location, $window, $cookies, 
 		});
 	};*/
 
-	var code = $location.search().code;
-	if (code) {
-		User.setCode(code, function() {
-			//$location.hash("");
+	var path = $location.hash();
+	if(path) {
+		User.setToken(path, function() {
+			$location.hash("");
 		});
 	}
 	// ok
 	$scope.login = function() {
 		var getParams = {
-				response_type : "code",
+				response_type : "token",
 				client_id : "f18cbb797ecb4c648e9575377b071f52",
 				device_id : "",
 				device_name : "",
