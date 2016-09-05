@@ -1,6 +1,39 @@
 app.factory('User', function($http) {
 	var userPublic = new Object();
 	var userPrivate = new Object(); 
+	
+	// public
+	userPublic.resetParams = function(cb) {
+		userPrivate.code = "";
+	}
+	
+	userPublic.setCode = function(code) {
+		userPrivate.code = code;
+		userPrivate.getUserInfo();
+	};
+	// private
+	userPrivate.getUserInfo = function() {
+		var url = "oauth.yandex.ru";
+		var postParams = {
+			grant_type : "authorization_code",
+			code : code,
+			client_id : "f18cbb797ecb4c648e9575377b071f52",
+			client_secret : "3ebcc764f18a41af86c2ebbf90dddb58"
+		};
+		
+		$http.post(url, postParams)
+		   .then(
+		       function(response){
+		    	   console.log(response);
+		       }, 
+		       function(response){
+		    	   console.log(response);
+		       }
+		    );
+		
+	}
+	
+	/*
 	userPrivate.ver = "5.53";
 	// https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V&callback=JSONP_CALLBACK
 	userPrivate.appId = "5590999";
@@ -89,6 +122,7 @@ app.factory('User', function($http) {
 		    });
 	};
 
+	*/
 	userPublic.resetParams();
 	return userPublic;
 });

@@ -2,7 +2,7 @@ app.controller("AuthController", function($scope, $location, $window, $cookies, 
 	"ngInject"
 	$scope.paramsToString = $scope.$parent.paramsToString;
 	
-	$scope.openProfile = function() {
+	/*$scope.openProfile = function() {
 		$window.open('https://vk.com/' + $scope.userHref, '_blank');
 	};
 	
@@ -46,18 +46,26 @@ app.controller("AuthController", function($scope, $location, $window, $cookies, 
 		User.resetParams(function() {
 			$location.path( "/");
 		});
-	};
+	};*/
 
+	var code = $location.search().code;
+	if (code) {
+		User.setCode(code, function() {
+			//$location.hash("");
+		});
+	}
+	// ok
 	$scope.login = function() {
 		var getParams = {
-				client_id : 5590999,
-				display : "page",
-				redirect_uri : "https://nsrg-angular-api.herokuapp.com%3F",
-				scope : "notes,offline",
-				response_type : "token",
-				v : "5.53"				
+				response_type : "code",
+				client_id : "f18cbb797ecb4c648e9575377b071f52",
+				device_id : "",
+				device_name : "",
+				login_hint : "",
+				force_confirm : "yes",
+				state : ""			
 		};
-		$window.open('https://oauth.vk.com/authorize?' + this.paramsToString(getParams), '_self');
+		$window.open('https://oauth.yandex.ru/authorize?' + this.paramsToString(getParams), '_self');
 	};
 
 });
