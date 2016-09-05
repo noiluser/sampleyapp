@@ -13,7 +13,7 @@ app.factory('User', function($http) {
 	};
 	// private
 	userPrivate.getUserInfo = function() {
-		var url = "https://oauth.yandex.ru/token";
+		var url = "http://oauth.yandex.ru/token";
 		var postParams = {
 			grant_type : "authorization_code",
 			code : this.code,
