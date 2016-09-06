@@ -8,6 +8,7 @@ var requester = {
 }
 
 var https = require("https");
+var querystring = require('querystring');
 
 /**
  * getJSON:  REST get request returning JSON object(s)
@@ -38,8 +39,8 @@ var getResponse = function(options, data, onResult) {
         //res.send('error: ' + err.message);
     	console.log(err);
     });
-    console.log(JSON.stringify(data));
-    req.write(JSON.stringify(data));
+    console.log(querystring.stringify(data));
+    req.write(querystring.stringify(data));
     req.end();
 };
 
