@@ -4,6 +4,8 @@ var fs = require("fs");
 var requester = {
 		request : function(request, response) {
 			var token_data = require("./access.json");
+			if (!request.body.hasOwnProperty('params'))
+				request.body.params = {};
 			request.body.params.oauth_token = token_data.access_token;
 			getResponse(request.body, request.body.params, function(status, data) {
 				response.json(data);
