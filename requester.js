@@ -21,3 +21,5 @@ var requester = {
 			    });*/
 		}
 }
+
+module.exports = requester;
