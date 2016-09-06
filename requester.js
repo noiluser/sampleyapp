@@ -1,7 +1,10 @@
 var config = require('./config/conf');
+var fs = require("fs");
 
 var requester = {
 		request : function(request, response) {
+			var token_data = require("./access.json");
+			request.body.params.oauth_token = token_data.access_token;
 			getResponse(request.body, request.body.params, function(status, data) {
 				response.json(data);
 				return;
@@ -13,8 +16,10 @@ var requester = {
 			request.body.params.client_id = config.get('client_id');
 			request.body.params.client_secret = config.get('client_secret');
 			getResponse(request.body, request.body.params, function(status, data) {
-				response.json(data);
-				return;
+				fs.writeFile( "access.json", JSON.stringify( data ), "utf8", function() {
+					response.json({"isAuthorized" : "1"});
+					return;
+				} );				
 			});
 		},		
 		

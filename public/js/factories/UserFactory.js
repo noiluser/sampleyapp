@@ -13,7 +13,11 @@ app.factory('User', function($http) {
 			}	
 		};
 		$http.post("/login", params).then(function(data) {
-			console.log(data);
+			if (data.data.isAuthorized) {
+				console.log("authorized OK");
+			} else {
+				console.log("not authorized");
+			}
 		})
 	};
 	// public
