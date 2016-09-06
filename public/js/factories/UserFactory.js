@@ -19,7 +19,15 @@ app.factory('User', function($http) {
 	};
 	// private
 	userPrivate.getUserData = function(cb) {
-		$http.post("/request", {token: userPrivate.access_token}).then(function(data) {
+		var params = {
+				url : "https://login.yandex.ru",
+				path : "/info",
+				method : "GET",
+				params : {
+					oauth_token : userPrivate.access_token
+				}	
+		}
+		$http.post("/request", params).then(function(data) {
 			console.log(data);
 		})
 	};
