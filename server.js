@@ -6,8 +6,6 @@ var requester = require('./requester.js');
 
 // creating instances
 var app = express();
-var router = express.Router();
-router.post('/request', requester.request);
 
 // set port
 var port = process.env.PORT || 4081;
@@ -19,6 +17,9 @@ app.use('/static', express.static(__dirname + '/public'));
 app.get("/", function(req, res){
 	res.sendFile(__dirname + '/public/index.html');
 });
+
+//
+app.post('/request', requester.request);
 
 server.on('request', app);
 server.listen(port, function () { 
