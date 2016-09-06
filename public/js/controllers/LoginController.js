@@ -63,17 +63,16 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 
 	$scope.login = function() {
 		$http.get("/clientid").then(function(data) {
-			console.log(data.client_id,data);
 			var getParams = {
 					response_type : "code",
-					client_id : data.client_id,
+					client_id : data.data.client_id,
 					device_id : "",
 					device_name : "",
 					login_hint : "",
 					force_confirm : "yes",
 					state : ""			
 			};
-			//$window.open('https://oauth.yandex.ru/authorize?' + $scope.paramsToString(getParams), '_self');
+			$window.open('https://oauth.yandex.ru/authorize?' + $scope.paramsToString(getParams), '_self');
 		});
 
 	};
