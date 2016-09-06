@@ -1,6 +1,6 @@
 var requester = {
 		request : function(request, response) {
-			//console.log(request);
+			console.log(request.body);
 			/*
 			* url :
 			* method :

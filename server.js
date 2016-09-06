@@ -1,6 +1,7 @@
 // require express and websockets
 var server = require('http').createServer();
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var requester = require('./requester.js');
 
@@ -9,6 +10,9 @@ var app = express();
 
 // set port
 var port = process.env.PORT || 4081;
+
+app.use( bodyParser.json() ); 
+app.use( bodyParser.urlencoded( {extended: true} ) );
 
 // Handling static content
 app.use('/static', express.static(__dirname + '/public'));
