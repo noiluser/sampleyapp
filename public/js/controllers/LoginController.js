@@ -62,11 +62,10 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 	}
 
 	$scope.login = function() {
-		$http.get("/clientid", params).then(function(data) {
-			console.log(data);
+		$http.get("/clientid").then(function(data) {
 			var getParams = {
 					response_type : "code",
-					client_id : client_id,
+					client_id : data.client_id,
 					device_id : "",
 					device_name : "",
 					login_hint : "",
