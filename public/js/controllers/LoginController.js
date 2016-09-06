@@ -72,7 +72,7 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 					force_confirm : "yes",
 					state : ""			
 			};
-			$window.open('https://oauth.yandex.ru/authorize?' + this.paramsToString(getParams), '_self');
+			$window.open('https://oauth.yandex.ru/authorize?' + $scope.paramsToString(getParams), '_self');
 		});
 
 	};
