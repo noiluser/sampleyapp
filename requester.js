@@ -38,7 +38,7 @@ var getResponse = function(options, data, onResult) {
         //res.send('error: ' + err.message);
     	console.log(err);
     });
-    
+    console.log(JSON.stringify(data));
     req.write(JSON.stringify(data));
     req.end();
 };
