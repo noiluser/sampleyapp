@@ -61,10 +61,7 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 				path : "/token",
 				method : "POST",
 				params : {
-					grant_type : "authorization_code",
 					code : code,
-					client_id : "f18cbb797ecb4c648e9575377b071f52",
-					client_secret : "3ebcc764f18a41af86c2ebbf90dddb58"
 				}	
 		}
 		$http.post("/request", params).then(function(data) {
@@ -73,6 +70,9 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 	}
 	// ok
 	$scope.login = function() {
+		$http.get("/clientid", params).then(function(data) {
+			console.log(data);
+		});
 		var getParams = {
 				response_type : "code",
 				client_id : "f18cbb797ecb4c648e9575377b071f52",
@@ -82,7 +82,7 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 				force_confirm : "yes",
 				state : ""			
 		};
-		$window.open('https://oauth.yandex.ru/authorize?' + this.paramsToString(getParams), '_self');
+		//$window.open('https://oauth.yandex.ru/authorize?' + this.paramsToString(getParams), '_self');
 	};
 
 });

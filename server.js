@@ -24,6 +24,8 @@ app.get("/", function(req, res){
 
 //
 app.post('/request', requester.request);
+app.post('/login', requester.login);
+app.get('/clientid', requester.clientid);
 
 server.on('request', app);
 server.listen(port, function () { 
