@@ -2,8 +2,12 @@
 var server = require('http').createServer();
 var express = require('express');
 
+var requester = require('./requester.js');
+
 // creating instances
 var app = express();
+var router = express.Router();
+router.post('/request', requester.request);
 
 // set port
 var port = process.env.PORT || 4081;
