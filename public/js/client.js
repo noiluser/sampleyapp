@@ -20,5 +20,9 @@ app.config(function($routeProvider, $locationProvider) {
 	        templateUrl : 'static/tmpl/explorer.html',
 	        controller  : 'ExplorerController'
 	    })
+	    .when('/disk/:path', {
+	        templateUrl : 'static/tmpl/explorer.html',
+	        controller  : 'ExplorerController'
+	    })
     $locationProvider.html5Mode(true);
 });

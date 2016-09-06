@@ -26,6 +26,10 @@ app.get("/disk", function(req, res){
 	res.sendFile(__dirname + '/public/index.html');
 });
 
+app.get("/disk/*", function(req, res){
+	res.sendFile(__dirname + '/public/index.html');
+});
+
 //
 app.post('/request', requester.request);
 app.post('/login', requester.login);
