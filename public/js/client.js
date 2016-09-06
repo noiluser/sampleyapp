@@ -20,7 +20,7 @@ app.config(function($routeProvider, $locationProvider) {
 	        templateUrl : 'static/tmpl/explorer.html',
 	        controller  : 'ExplorerController'
 	    })
-	    .when('/disk/:path*\', {
+	    .when('/disk/:path*', {
 	        templateUrl : 'static/tmpl/explorer.html',
 	        controller  : 'ExplorerController'
 	    })
