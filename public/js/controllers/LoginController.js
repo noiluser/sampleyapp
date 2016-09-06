@@ -1,4 +1,4 @@
-app.controller("AuthController", function($scope, $location, $window, $cookies, User) {
+app.controller("AuthController", function($scope, $location, $window, $http, $cookies, User) {
 	"ngInject"
 	$scope.paramsToString = $scope.$parent.paramsToString;
 	
@@ -48,11 +48,27 @@ app.controller("AuthController", function($scope, $location, $window, $cookies, 
 		});
 	};*/
 
-	var path = $location.hash();
+	/*var path = $location.hash();
 	if(path) {
 		User.setToken(path, function() {
 			$location.hash("");
 		});
+	}*/
+	var code = $location.search().code;
+	if (code) {
+		var params = {
+				host : "oauth.yandex.ru",
+				path : "/token",
+				method : "POST",
+				params : {
+					code : code,
+					client_id : "f18cbb797ecb4c648e9575377b071f52",
+					client_secret : "3ebcc764f18a41af86c2ebbf90dddb58"
+				}	
+		}
+		$http.post("/request", params).then(function(data) {
+			console.log(data);
+		})
 	}
 	// ok
 	$scope.login = function() {

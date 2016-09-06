@@ -23,7 +23,7 @@ var getResponse = function(options, data, onResult) {
         res.setEncoding('utf8');
 
         res.on('data', function (chunk) {
-        	//console.log(chunk);
+        	console.log("pr", chunk);
             output += chunk;
         });
 
