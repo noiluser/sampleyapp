@@ -19,7 +19,7 @@ app.factory('User', function($http) {
 				console.log("not authorized");
 			}
 		})
-	};
+	}; 
 	// public
 	userPublic.resetParams = function(cb) {
 		userPrivate.code = "";
