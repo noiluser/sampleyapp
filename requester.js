@@ -1,6 +1,6 @@
 var requester = {
 		request : function(request, response) {
-			console.log(request);
+			//console.log(request);
 			/*
 			* url :
 			* method :
@@ -43,7 +43,6 @@ var requester = {
 		
 }
 
-var http = require("http");
 var https = require("https");
 
 /**
@@ -52,8 +51,8 @@ var https = require("https");
  * @param callback: callback to pass the results JSON object(s) back
  */
 var getResponse = function(options, data, onResult) {
-    var prot = options.port == 443 ? https : http;
-    var req = prot.request(options, function(res)
+
+    var req = https.request(options, function(res)
     {
         var output = '';
         console.log(options.host + ':' + res.statusCode);
