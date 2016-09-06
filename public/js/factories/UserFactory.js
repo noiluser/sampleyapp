@@ -15,12 +15,17 @@ app.factory('User', function($http) {
 		$http.post("/login", params).then(function(data) {
 			if (data.data.isAuthorized) {
 				console.log("authorized OK");
+				userPrivate.isAuthorized = true;
 				userPrivate.getUserData(cb);
 			} else {
 				console.log("not authorized");
 			}
 		})
 	}; 
+	
+	userPublic.resetParams = function() {
+		userPrivate.isAuthorized = false;
+	};
 	
 	// private
 	userPrivate.getUserData = function(cb) {
