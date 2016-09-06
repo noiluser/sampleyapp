@@ -6,7 +6,7 @@ var requester = {
 			* method :
 			* params :
 			*/
-			var options = {
+			/*var options = {
 				    host: 'somesite.com',
 				    port: 443,
 				    path: '/some/path',
@@ -15,7 +15,11 @@ var requester = {
 				        'Content-Type': 'application/json'
 				    }
 				};
-			
+			*/
+			getResponse(request.body, request.body.params, function(status, data) {
+				response.json(data);
+				return;
+			});
 			
 			/*
 			var url = "https://login.yandex.ru/info?callback=JSON_CALLBACK&onload=JSON_CALLBACK&oauth_token=" + this.access_token;
@@ -47,8 +51,7 @@ var https = require("https");
  * @param options: http options object
  * @param callback: callback to pass the results JSON object(s) back
  */
-var getResponse = function(options, onResult)
-{
+var getResponse = function(options, data, onResult) {
     var prot = options.port == 443 ? https : http;
     var req = prot.request(options, function(res)
     {
@@ -69,7 +72,8 @@ var getResponse = function(options, onResult)
     req.on('error', function(err) {
         //res.send('error: ' + err.message);
     });
-
+    
+    req.write(data);
     req.end();
 };
 
