@@ -56,7 +56,7 @@ app.factory('User', function($http) {
 		}
 		$http.post("/request", params).then(function(data) {
 			userPrivate.name = data.data.display_name;
-			userPrivate.hasPhoto = !data.data.is_avatar_empty;
+			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
 			//console.log(data.data);
 		})
