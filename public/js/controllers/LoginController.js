@@ -57,7 +57,7 @@ app.controller("AuthController", function($scope, $location, $window, $cookies, 
 	// ok
 	$scope.login = function() {
 		var getParams = {
-				response_type : "token",
+				response_type : "code",
 				client_id : "f18cbb797ecb4c648e9575377b071f52",
 				device_id : "",
 				device_name : "",
