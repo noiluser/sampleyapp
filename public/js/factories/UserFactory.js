@@ -2,6 +2,20 @@ app.factory('User', function($http) {
 	var userPublic = new Object();
 	var userPrivate = new Object(); 
 	
+	////
+	userPublic.setCode = function(code, cb) {
+		var params = {
+		host : "oauth.yandex.ru",
+		path : "/token",
+		method : "POST",
+		params : {
+			code : code,
+			}	
+		};
+		$http.post("/login", params).then(function(data) {
+			console.log(data);
+		})
+	};
 	// public
 	userPublic.resetParams = function(cb) {
 		userPrivate.code = "";

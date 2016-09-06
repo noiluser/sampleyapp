@@ -56,33 +56,26 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 	}*/
 	var code = $location.search().code;
 	if (code) {
-		var params = {
-				host : "oauth.yandex.ru",
-				path : "/token",
-				method : "POST",
-				params : {
-					code : code,
-				}	
-		}
-		$http.post("/request", params).then(function(data) {
-			console.log(data);
-		})
+		User.setCode(code, function() {
+			
+		});
 	}
-	// ok
+
 	$scope.login = function() {
 		$http.get("/clientid", params).then(function(data) {
 			console.log(data);
+			var getParams = {
+					response_type : "code",
+					client_id : client_id,
+					device_id : "",
+					device_name : "",
+					login_hint : "",
+					force_confirm : "yes",
+					state : ""			
+			};
+			$window.open('https://oauth.yandex.ru/authorize?' + this.paramsToString(getParams), '_self');
 		});
-		var getParams = {
-				response_type : "code",
-				client_id : "f18cbb797ecb4c648e9575377b071f52",
-				device_id : "",
-				device_name : "",
-				login_hint : "",
-				force_confirm : "yes",
-				state : ""			
-		};
-		//$window.open('https://oauth.yandex.ru/authorize?' + this.paramsToString(getParams), '_self');
+
 	};
 
 });
