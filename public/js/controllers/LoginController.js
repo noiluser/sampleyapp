@@ -61,7 +61,7 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 				path : "/token",
 				method : "POST",
 				params : {
-					code : code,
+					grant_type : code,
 					client_id : "f18cbb797ecb4c648e9575377b071f52",
 					client_secret : "3ebcc764f18a41af86c2ebbf90dddb58"
 				}	
