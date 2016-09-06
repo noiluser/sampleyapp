@@ -2,9 +2,7 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 	"ngInject"
 	$scope.paramsToString = $scope.$parent.paramsToString;
 	
-	/*$scope.openProfile = function() {
-		$window.open('https://vk.com/' + $scope.userHref, '_blank');
-	};
+	/*
 	
 	$scope.openTop = function() {
 		$location.path( "/");
@@ -22,24 +20,15 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 		User.setToken(cook);
 	}
 	
-	$scope.$watch(function(){ return User.getFirstName(); }, function(val){
-		$scope.userName = val;
-	});	
+
 	$scope.$watch(function(){ return User.getLastName(); }, function(val){
 		$scope.userLastName = val;
 	});	
 	$scope.$watch(function(){ return User.getHref(); }, function(val){
 		$scope.userHref = val;
 	});	
-	$scope.$watch(function(){ return User.getPhoto(); }, function(val){
-		$scope.photo = val;
-	});	
-	$scope.$watch(function(){ return User.hasPhoto(); }, function(val){
-		$scope.hasPhoto = val; 
-	});	
-	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
-		$scope.isUserLoggedIn = val;
-	});		
+
+	
 	
 	$scope.logout = function() {
 		//$cookies.remove("VkNotebookAccess");
@@ -54,12 +43,32 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 			$location.hash("");
 		});
 	}*/
+	
+	
 	var code = $location.search().code;
 	if (code) {
 		User.setCode(code, function() {
 			
 		});
 	}
+	
+	$scope.openProfile = function() {
+		$window.open('https://passport.yandex.ru/profile', '_blank');
+	};
+	
+	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
+		$scope.isUserLoggedIn = val;
+	});	
+	$scope.$watch(function(){ return User.getPhoto(); }, function(val){
+		$scope.photo = "https://avatars.yandex.net/get-yapic/" + val + "/islands-middle";
+	});
+	$scope.$watch(function(){ return User.hasPhoto(); }, function(val){
+		$scope.hasPhoto = true;
+		//$scope.hasPhoto = val; 
+	});	
+	$scope.$watch(function(){ return User.getName(); }, function(val){
+		$scope.userName = val;
+	});	
 
 	$scope.login = function() {
 		$http.get("/clientid").then(function(data) {

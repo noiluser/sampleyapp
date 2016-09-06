@@ -19,7 +19,7 @@
 						<li class="hidden-xs">
 							<img ng-show="hasPhoto" ng-click="openProfile()" class="avatar img-circle" ng-src="{{photo}}">
 						</li>
-						<li><a href="javascript:void(0);" ng-show="isUserLoggedIn" ng-click="openProfile()" target="_blank">{{userName}} {{userLastName}}</a></li>
+						<li><a href="javascript:void(0);" ng-show="isUserLoggedIn" ng-click="openProfile()" target="_blank">{{userName}}</a></li>
 						<li ng-show="isUserLoggedIn"><a href="javascript:void(0);" ng-click="logout()">Logout</a></li>									   
 						<li ng-show="!isUserLoggedIn"><a href="javascript:void(0);" ng-click="login()">Login</a></li>
 						

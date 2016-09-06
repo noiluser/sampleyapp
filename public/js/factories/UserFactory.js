@@ -1,7 +1,7 @@
 app.factory('User', function($http) {
 	var userPublic = new Object();
 	var userPrivate = new Object(); 
-	
+
 	// Public
 	userPublic.setCode = function(code, cb) {
 		var params = {
@@ -25,6 +25,25 @@ app.factory('User', function($http) {
 	
 	userPublic.resetParams = function() {
 		userPrivate.isAuthorized = false;
+		userPrivate.name = "";
+		userPrivate.hasPhoto = false;
+		userPrivate.photo = "";
+	};
+	
+	userPublic.isAuthorized = function() {
+		return userPrivate.isAuthorized;
+	};
+	
+	userPublic.getName = function() {
+		return userPrivate.name;		
+	};
+	
+	userPublic.hasPhoto = function() {
+		return userPrivate.hasPhoto;		
+	};
+	
+	userPublic.getPhoto = function() {
+		return userPrivate.photo;		
 	};
 	
 	// private
@@ -36,7 +55,10 @@ app.factory('User', function($http) {
 				//params : {}	
 		}
 		$http.post("/request", params).then(function(data) {
-			console.log(data.data);
+			userPrivate.name = data.data.display_name;
+			userPrivate.hasPhoto = !data.data.is_avatar_empty;
+			userPrivate.photo = data.data.default_avatar_id;
+			//console.log(data.data);
 		})
 	};
 	
@@ -62,9 +84,7 @@ app.factory('User', function($http) {
 		return userPrivate.access_token;
 	};
 	
-	userPublic.getFirstName = function() {
-		return userPrivate.firstName;		
-	};
+
 	
 	userPublic.getLastName = function() {
 		return userPrivate.lastName;		
@@ -72,14 +92,6 @@ app.factory('User', function($http) {
 	
 	userPublic.getHref = function() {
 		return userPrivate.href;		
-	};
-	
-	userPublic.hasPhoto = function() {
-		return userPrivate.hasPhoto;		
-	};
-	
-	userPublic.getPhoto = function() {
-		return userPrivate.photo;		
 	};
 	
 	userPublic.getId = function() {
@@ -92,9 +104,7 @@ app.factory('User', function($http) {
 		return output;
 	};
 	
-	userPublic.isAuthorized = function() {
-		return userPrivate.isAuthorized;
-	};
+
 	
 	userPublic.resetParams = function(cb) {
 		userPrivate.isAuthorized = false;
