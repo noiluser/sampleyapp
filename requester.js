@@ -23,14 +23,14 @@ var getResponse = function(options, data, onResult) {
         res.setEncoding('utf8');
 
         res.on('data', function (chunk) {
-        	console.log(chunk);
+        	//console.log(chunk);
             output += chunk;
         });
 
         res.on('end', function() {
         	console.log("ok", output);
-            var obj = JSON.parse(output);
-            onResult(res.statusCode, obj);
+            /*var obj = JSON.parse(output);
+            onResult(res.statusCode, obj);*/
         });
     });
 
