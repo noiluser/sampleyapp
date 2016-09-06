@@ -70,6 +70,7 @@ var getResponse = function(options, data, onResult) {
 
     req.on('error', function(err) {
         //res.send('error: ' + err.message);
+    	console.log(err);
     });
     
     req.write(JSON.stringify(data));
