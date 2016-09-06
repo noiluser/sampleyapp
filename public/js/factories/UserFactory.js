@@ -19,7 +19,7 @@ app.factory('User', function($http) {
 	};
 	// private
 	userPrivate.getUserData = function(cb) {
-		var url = "https://login.yandex.ru/info?oauth_token=" + this.access_token + "&callback=JSON_CALLBACK";
+		var url = "https://login.yandex.ru/info?callback=JSON_CALLBACK&oauth_token=" + this.access_token;
 		$http.jsonp(url).
 		    success(function(data, status, headers, config) {
 		    	console.log(data);
