@@ -1,4 +1,4 @@
-app.controller("ExplorerController", function($scope) {
+app.controller("ExplorerController", function($scope, User) {
 	"ngInject"
 	$scope.isUserLoggedIn = false;
 	
