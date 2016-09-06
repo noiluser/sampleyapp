@@ -22,7 +22,7 @@ app.factory('User', function($http) {
 		var params = {
 				url : "https://login.yandex.ru",
 				path : "/info",
-				method : "GET",
+				method : "POST",
 				params : {
 					oauth_token : userPrivate.access_token
 				}	
