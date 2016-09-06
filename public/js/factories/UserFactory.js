@@ -2,7 +2,7 @@ app.factory('User', function($http) {
 	var userPublic = new Object();
 	var userPrivate = new Object(); 
 	
-	////
+	// Public
 	userPublic.setCode = function(code, cb) {
 		var params = {
 		host : "oauth.yandex.ru",
@@ -15,38 +15,23 @@ app.factory('User', function($http) {
 		$http.post("/login", params).then(function(data) {
 			if (data.data.isAuthorized) {
 				console.log("authorized OK");
+				userPrivate.getUserData(cb);
 			} else {
 				console.log("not authorized");
 			}
 		})
 	}; 
-	// public
-	userPublic.resetParams = function(cb) {
-		userPrivate.code = "";
-	}
 	
-	userPublic.setToken = function(paramStr, cb) {
-		var settings = paramStr.split(/[\=\&]+/);
-		for(var i = 0; i < settings.length; i+=2) {
-			userPrivate[settings[i]] = settings[i+1];
-		}
-		if(userPrivate.hasOwnProperty("access_token")) {
-			userPrivate.isAuthorized = true;
-			userPrivate.getUserData(cb);
-		}
-	};
 	// private
 	userPrivate.getUserData = function(cb) {
 		var params = {
 				host : "login.yandex.ru",
 				path : "/info",
 				method : "POST",
-				params : {
-					oauth_token : userPrivate.access_token
-				}	
+				//params : {}	
 		}
 		$http.post("/request", params).then(function(data) {
-			console.log(data);
+			console.log(data.data);
 		})
 	};
 	
