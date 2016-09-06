@@ -20,7 +20,7 @@ app.factory('User', function($http) {
 	// private
 	userPrivate.getUserData = function(cb) {
 		var params = {
-				hostname : "login.yandex.ru",
+				host : "login.yandex.ru",
 				path : "/info",
 				method : "POST",
 				params : {
