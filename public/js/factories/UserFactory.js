@@ -80,6 +80,7 @@ app.factory('User', function($http, $q) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
+			return this;
 		});
 	};
 	
