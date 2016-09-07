@@ -1,4 +1,4 @@
-app.controller("AuthController", function($scope, $location, $window, $http, $cookies, User) {
+app.controller("StartController", function($scope, $location, $window, $http, $cookies, User) {
 	"ngInject"
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){

@@ -10,10 +10,7 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 	}
 	
 	$scope.openTop = function() {
-		if ($scope.isUserLoggedIn)
-			$location.path( "/disk/" );
-		else 
-			$location.path( "/");
+		$location.path( "/");
 	}
 	
 	$scope.openProfile = function() {

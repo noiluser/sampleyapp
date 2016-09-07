@@ -10,7 +10,6 @@ app.filter('normalizedSize', function () {
 			var res = "";
 			item = item * 1.0;
 			
-			//function formatBytes(bytes,decimals) {
 			var decimals = 2;
 			if(item == 0) res = "(0 bytes)";
 			var k = 1024; // or 1024 for binary
