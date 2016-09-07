@@ -31,8 +31,14 @@ app.factory('User', function($http, $q) {
 	};
 	
 	userPublic.getContent = function(path) {
+		console.log("get");
 		var deferred = $q.defer();
-		userPrivate.request(path);//.then(function(data) {deferred.resolve({ success: true, data: data});}, function(data) {deferred.reject({ success: false, data: data});});
+		userPrivate.request(path).then(
+			function(data) {
+				deferred.resolve(data);
+			}, function(data) {
+				deferred.reject(data);}
+		);
 		return deferred.promise;
 	};
 	
