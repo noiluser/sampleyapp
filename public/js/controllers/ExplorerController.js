@@ -10,13 +10,14 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val, oldValue){
-	    if(angular.equals(val, oldValue)){
+	    if(!angular.equals(val, oldValue)){
+	    	$scope.$emit("loadFolder");
 	        //return; // simply skip that
-	    	console.log('same');
+	    	//console.log('same');
 	    }		
-		console.log("auth", val, oldValue);
+		/*console.log("auth", val, oldValue);
 		if (val)
-			$scope.$emit("loadFolder");
+			$scope.$emit("loadFolder");*/
 	});
 	
 	$scope.$on('loadFolder', function(event) {

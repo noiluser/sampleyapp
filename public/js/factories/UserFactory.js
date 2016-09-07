@@ -31,7 +31,6 @@ app.factory('User', function($http, $q) {
 	};
 	
 	userPublic.getContent = function(path) {
-		console.log("get");
 		var deferred = $q.defer();
 		userPrivate.request(path).then(
 			function(data) {
@@ -79,7 +78,7 @@ app.factory('User', function($http, $q) {
 		if (!path) path = "";
 		var params = {
 				host : "cloud-api.yandex.net",
-				path : "/v1/disk/resources?fields=size&path=disk:/",
+				path : "/v1/disk/resources?path=disk:/",
 				method : "GET",
 				navigate : path,
 				//params : {}	
