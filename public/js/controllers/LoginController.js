@@ -4,7 +4,7 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 	
 	var code = $location.search().code;
 	if (code) {
-		User.setCode(code, function() {
+		User.setCode(code).then(function(data) {
 			$location.search('code', null)
 		});
 	}

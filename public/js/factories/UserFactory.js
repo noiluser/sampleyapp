@@ -3,7 +3,7 @@ app.factory('User', function($http, $q) {
 	var userPrivate = new Object(); 
 
 	// Public
-	userPublic.setCode = function(code, callback) {
+	userPublic.setCode = function(code) {
 		var params = {
 		host : "oauth.yandex.ru",
 		path : "/token",
@@ -12,15 +12,26 @@ app.factory('User', function($http, $q) {
 			code : code,
 			}	
 		};
+		var deferred = $q.defer();
 		$http.post("/login", params).then(function(data) {
 			if (data.data.isAuthorized) {
 				console.log("authorized OK");
 				userPrivate.isAuthorized = true;
-				userPrivate.getUserData(callback);
+				userPrivate.getUserData().then(function(data){
+					// getUserData success
+					deferred.resolve(data);
+				}, function(data){
+					// getUserData error
+					deferred.reject(data);
+				});
 			} else {
 				console.log("not authorized");
 			}
-		})
+		}, function(data) {
+			// post error
+			deferred.reject(data);
+		});
+		return deferred.promise;
 	}; 
 	
 	userPublic.resetParams = function() {
@@ -61,20 +72,23 @@ app.factory('User', function($http, $q) {
 	};
 	
 	// private
-	userPrivate.getUserData = function(callback) {
+	userPrivate.getUserData = function() {
 		var params = {
 				host : "login.yandex.ru",
 				path : "/info",
 				method : "POST",
 				//params : {}	
 		}
+		var deferred = $q.defer();
 		$http.post("/request", params).then(function(data) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
-			if (callback) 
-				callback();
-		})
+			deferred.resolve(data.data);
+		}, function(data) {
+			deferred.reject(data);
+		});
+		return deferred.promise;
 	};
 	
 	userPrivate.request = function(path) {
@@ -93,7 +107,7 @@ app.factory('User', function($http, $q) {
 			} else {
 				deferred.resolve(data.data);
 			}
-		}).then(function(data) {
+		}, function(data) {
 			deferred.reject(data);
 		});
 		return deferred.promise;
