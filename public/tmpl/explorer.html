@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row" ng-repeat="item in items">
 		<div class="col-xs-12">
-				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk)">{{item.name}} &nbsp; {{item.size | normalizedSize}}</span>
+				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk, item.type)">{{item.name}} &nbsp; {{item.size | normalizedSize}}</span>
 		</div>
 	</div>
 	

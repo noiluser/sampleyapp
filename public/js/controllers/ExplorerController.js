@@ -27,8 +27,10 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 	});
 	
 
-	$scope.navigate = function(path) {
-		var url = "/disk/" + path;
-		$location.path( url );
+	$scope.navigate = function(path, type) {
+		if (type && type == "dir") {
+			var url = "/disk/" + path;
+			$location.path( url );
+		}
 	}
 });

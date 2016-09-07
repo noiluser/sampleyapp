@@ -7,7 +7,7 @@ app.filter('cutDisk', function () {
 app.filter('normalizedSize', function () {
 	return function (item) {
 		if (item) {
-			return "(" + item + ")";
+			return "(" + item + " bytes)";
 		} else {
 			return "";
 		}
