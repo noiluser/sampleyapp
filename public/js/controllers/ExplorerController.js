@@ -25,9 +25,11 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		User.getContent($scope.path)
 		.then(function(data) {
 			console.log("s", data);
-			$scope.isContentLoaded = true;
-			if (data.hasOwnProperty('_embedded'))
-				$scope.items = data._embedded.items;
+			$scope.$apply(function() {
+				$scope.isContentLoaded = true;
+				if (data.hasOwnProperty('_embedded'))
+					$scope.items = data._embedded.items;
+			});
 		},	function(data) {
 			console.log("e", data);
 		});
