@@ -1,19 +1,17 @@
 <nav-directive></nav-directive>
 
 <div class="container">
-	<div class="row" ng-show="!isContentLoaded">
-		<div class="col-xs-12">
-			<div class="text-center">
-				<img src="static/img/spinner.gif">
-			</div>
-		</div>
-	</div>
-
 	<div class="row" ng-repeat="item in items">
 		<div class="col-xs-12">
 				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk)">{{item.name}}</span>
 		</div>
 	</div>
 	
-	
+	<div class="row" ng-show="!isContentLoaded">
+		<div class="col-xs-12">
+			<div class="text-center">
+				<img class="spinner img img-responsive" src="static/img/spinner.gif">
+			</div>
+		</div>
+	</div>
 </div>
