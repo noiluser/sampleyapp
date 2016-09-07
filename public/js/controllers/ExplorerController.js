@@ -1,21 +1,16 @@
-app.controller("ExplorerController", function($scope, $routeParams, $location, User) {
+app.controller("ExplorerController", function($scope, $routeParams, User) {
 	"ngInject"
-	$scope.isUserLoggedIn = false;
+
 	$scope.items = [];
 	
-	if ($routeParams.path) {
+	if ($routeParams.path)
 		$scope.path = $routeParams.path;
-		$scope.paths = $routeParams.path.split('/');
-	} else 
+	else 
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
-		if (val) {
-			$scope.isUserLoggedIn = true;
+		if (val)
 			$scope.$emit("loadFolder");
-		} else {
-			$scope.isUserLoggedIn = false;
-		}
 	});
 	
 	$scope.$on('loadFolder', function(event) {
@@ -25,15 +20,5 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		});
 	});
 	
-	$scope.navigateByIndex = function(index) {
-		if (index < $scope.paths.length) {
-			var navigator = "";
-			for(var i = 0; i <= index; i++) {
-				navigator += "/" + $scope.paths[index];
-			};
-			$location.path( "/disk" + navigator);
-		} else {
-			console.log("error: index=" + index + " is out of bounds (path length is " + $scope.paths.length + ")");
-		}
-	};
+
 });

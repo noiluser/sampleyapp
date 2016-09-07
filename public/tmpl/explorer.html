@@ -1,28 +1,13 @@
 <div class="container">
-	<div class="row" ng-show="!isUserLoggedIn">
+	<!-- <div class="row" ng-show="!isUserLoggedIn">
 		<div class="col-xs-12">
 			<div class="text-center">
 				Loading....
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-show="isUserLoggedIn">
-		<div class="col-xs-12">
-			<div class="text-center">
-				<a href="/disk/">
-					<i class="glyphicon glyphicon-home"></i>
-				</a>
-				
-				<span ng-repeat="nav in paths">
-					<i class="glyphicon glyphicon-chevron-right"></i>
-					<a href="javascript:void(0);" ng-click="navigateByIndex($index)">{{nav}}</a>
-				</span>
-
-			</div>
-		</div>
-	</div>
-	
-	<div class="row" ng-show="isUserLoggedIn" ng-repeat="item in items">
+	-->
+	<div class="row" ng-repeat="item in items">
 		<div class="col-xs-12">
 				<a ng-class="{'folder' : item.type == 'dir', 'file' : item.type == 'file'}" href="/disk/{{item.path | cutDisk}}">{{item.name}}</a>
 		</div>
