@@ -15,10 +15,15 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 	});
 	
 	$scope.$on('loadFolder', function(event) {
-		User.getContent($scope.path, function(content) {
+		User.getContent($scope.path/*, function(content) {
 			$scope.isContentLoaded = true;
 			if (content.hasOwnProperty('_embedded'))
 				$scope.items = content._embedded.items;
+		}*/)
+		.then(function(data) {
+			console.log("s", data);
+		},	function(data) {
+			console.log("e", data);
 		});
 	});
 	

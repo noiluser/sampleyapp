@@ -1,4 +1,4 @@
-app.factory('User', function($http) {
+app.factory('User', function($http, $q) {
 	var userPublic = new Object();
 	var userPrivate = new Object(); 
 
@@ -30,8 +30,10 @@ app.factory('User', function($http) {
 		userPrivate.photo = "";
 	};
 	
-	userPublic.getContent = function(path, callback) {
-		userPrivate.request(path, callback);
+	userPublic.getContent = function(path) {
+		var deferred = $q.defer();
+		userPrivate.request(path).then(function(data) {deferred.resolve({ success: true, data: data});}, function(data) {deferred.reject({ success: false, data: data});});
+		return deferred.promise;
 	};
 	
 	userPublic.isAuthorized = function() {
@@ -67,7 +69,7 @@ app.factory('User', function($http) {
 		})
 	};
 	
-	userPrivate.request = function(path, callback) {
+	userPrivate.request = function(path) {
 		if (!path) path = "";
 		var params = {
 				host : "cloud-api.yandex.net",
@@ -76,13 +78,17 @@ app.factory('User', function($http) {
 				navigate : path,
 				//params : {}	
 		}
+		var deferred = $q.defer();
 		$http.post("/navigate", params).then(function(data) {
 			if (data.data.hasOwnProperty('error')) {
-				// error
+				deferred.reject({ success: false, data: data.data});		
 			} else {
-				callback(data.data);
+				deferred.resolve({ success: true, data: data.data});
 			}
-		})
+		}).then(function(data) {
+			deferred.reject({ success: false, data: data});
+		});
+		return deferred.promise;
 	};
 	
 	
