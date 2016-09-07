@@ -9,11 +9,16 @@
 	<div class="row" ng-show="isUserLoggedIn">
 		<div class="col-xs-12">
 			<div class="text-center">
-				<a href="javascript:void(0);">Disk:/</a>
-				
-				<a href="javascript:void(0);" ng-repeat="nav in paths">
-					{{nav}}
+				<a href="javascript:void(0);">
+					<i class="glyphicon glyphicon-home"></i>
 				</a>
+				
+				<span ng-repeat="nav in paths">
+					<i class="glyphicon glyphicon-chevron-right"></i>
+					<a href="javascript:void(0);" ng-repeat="nav in paths">{{nav}}</a>
+				</span>
+				
+				
 				
 			</div>
 		</div>

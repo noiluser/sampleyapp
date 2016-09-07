@@ -20,7 +20,7 @@ app.controller("ExplorerController", function($scope, $routeParams, User) {
 	
 	$scope.$on('loadFolder', function(event) {
 		User.getContent($scope.path, function(content) {
-			if (content._embedded.hasOwnProperty('items'))
+			if (content.hasOwnProperty('_embedded'))
 				$scope.items = content._embedded.items;
 		});
 	});
