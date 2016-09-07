@@ -13,12 +13,12 @@ app.factory('User', function($http, $q) {
 			}	
 		};
 		var deferred = $q.defer();
-		$http.post("/login", params).then(function(data) {
+		/*$http.post("/login", params).then(function(data) {
 			if (data.data.isAuthorized) {
 				console.log("authorized OK");
-				userPrivate.isAuthorized = true;
 				userPrivate.getUserData().then(function(data){
 					// getUserData success
+					userPrivate.isAuthorized = true;
 					deferred.resolve(data);
 				}, function(data){
 					// getUserData error
@@ -31,7 +31,20 @@ app.factory('User', function($http, $q) {
 			// login post error
 			deferred.reject(data);
 		});
-		return deferred.promise;
+		return deferred.promise;*/
+		var deferred = $q.defer();
+		return $http.post("/login", params).then(function(data) {
+			if (!data.data.isAuthorized) {
+				deferred.reject(data);
+				return deferred.promise;
+			} else 
+				return userPrivate.getUserData();
+			}, function(data) {
+				deferred.reject(data);
+				return deferred.promise;
+			}).then(function() { 
+				userPrivate.isAuthorized = true; 
+				});
 	}; 
 	
 	userPublic.resetParams = function() {
@@ -80,15 +93,14 @@ app.factory('User', function($http, $q) {
 				//params : {}	
 		}
 		var deferred = $q.defer();
-		$http.post("/request", params).then(function(data) {
+		return $http.post("/request", params).then(function(data) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
-			deferred.resolve(data.data);
+		//	deferred.resolve(data.data);
 		}, function(data) {
-			deferred.reject(data);
+		//	deferred.reject(data);
 		});
-		return deferred.promise;
 	};
 	
 	userPrivate.request = function(path) {
