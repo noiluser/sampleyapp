@@ -92,7 +92,7 @@ app.factory('User', function($http, $q) {
 				method : "POST",
 				//params : {}	
 		}
-		var deferred = $q.defer();
+		//var deferred = $q.defer();
 		return $http.post("/request", params).then(function(data) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
@@ -101,6 +101,7 @@ app.factory('User', function($http, $q) {
 		}, function(data) {
 		//	deferred.reject(data);
 		});
+		//return deferred.promise;
 	};
 	
 	userPrivate.request = function(path) {
