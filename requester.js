@@ -28,8 +28,9 @@ var requester = {
 			if (request.body.hasOwnProperty('navigate')) {
 				request.body.path += querystring.stringify(request.body.navigate);
 			};
-//console.log("BODY", request.body);
-console.log("PATH",request.body.path);
+
+console.log("PATH",request.body.path, "NAV", request.body.navigate, querystring.stringify(request.body.navigate));
+
 			getResponse(request.body, request.body.params, function(status, data) {
 				response.json(data);
 				return;
