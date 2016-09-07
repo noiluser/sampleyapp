@@ -13,8 +13,6 @@ app.factory('User', function($http, $q) {
 			}	
 		};
 		var deferred = $q.defer();
-
-		var deferred = $q.defer();
 		return $http.post("/login", params).then(function(data) {
 			if (!data.data.isAuthorized) {
 				deferred.reject(data);
@@ -25,8 +23,9 @@ app.factory('User', function($http, $q) {
 				deferred.reject(data);
 				return deferred.promise;
 			}).then(function(data) { 
-				console.log("second then", data)
 				userPrivate.isAuthorized = true; 
+				}, function(data) {
+					console.log("err", data);
 				});
 	}; 
 	
@@ -75,13 +74,12 @@ app.factory('User', function($http, $q) {
 				method : "POST",
 				//params : {}	
 		}
-		return $http.post("/request", params).then(function(data) {
-			console.log("fisrt then", data);
+		return $http.post("/request1", params).then(function(data) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
 			return data;
-		});
+		}, function(data) {return data;});
 	};
 	
 	userPrivate.request = function(path) {
