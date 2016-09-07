@@ -67,9 +67,10 @@ app.factory('User', function($http) {
 	};
 	
 	userPrivate.request = function(path, callback) {
+		if (!path) path = "";
 		var params = {
 				host : "cloud-api.yandex.net",
-				path : "/v1/disk/resources?path=disk:" + path,
+				path : "/v1/disk/resources?path=disk:/" + path,
 				method : "GET",
 				//params : {}	
 		}
