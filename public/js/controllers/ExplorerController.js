@@ -2,6 +2,7 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 	"ngInject"
 
 	$scope.items = [];
+	$scope.isContentLoaded = false;
 	
 	if ($routeParams.path)
 		$scope.path = $routeParams.path;
@@ -15,6 +16,7 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 	
 	$scope.$on('loadFolder', function(event) {
 		User.getContent($scope.path, function(content) {
+			$scope.isContentLoaded = true;
 			if (content.hasOwnProperty('_embedded'))
 				$scope.items = content._embedded.items;
 		});

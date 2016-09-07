@@ -1,14 +1,14 @@
 <nav-directive></nav-directive>
 
 <div class="container">
-	<!-- <div class="row" ng-show="!isUserLoggedIn">
+	<div class="row" ng-show="!isContentLoaded">
 		<div class="col-xs-12">
 			<div class="text-center">
-				Loading....
+				<img src="static/img/spinner.gif">
 			</div>
 		</div>
 	</div>
-	-->
+
 	<div class="row" ng-repeat="item in items">
 		<div class="col-xs-12">
 				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk)">{{item.name}}</span>
