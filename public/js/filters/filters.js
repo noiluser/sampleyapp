@@ -3,3 +3,14 @@ app.filter('cutDisk', function () {
 		return item.replace(/^(disk\:\/)/,"");;
 	};
 });
+
+app.filter('normalizedSize', function () {
+	return function (item) {
+		if (item) {
+			return "(" + item + ")";
+		} else {
+			return "";
+		}
+		
+	};
+});

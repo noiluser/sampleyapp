@@ -4,29 +4,7 @@ app.factory('User', function($http, $q) {
 
 	// Public
 	userPublic.setCode = function(code) {
-		var params = {
-		host : "oauth.yandex.ru",
-		path : "/token",
-		method : "POST",
-		params : {
-			code : code,
-			}	
-		};
-		var deferred = $q.defer();
-		return $http.post("/login", params).then(function(data) {
-			if (!data.data.isAuthorized) {
-				deferred.reject(data);
-				return deferred.promise;
-			} else 
-				return userPrivate.getUserData();
-			}, function(data) {
-				deferred.reject(data);
-				return deferred.promise;
-			}).then(function(data) { 
-				userPrivate.isAuthorized = true; 
-				}, function(data) {
-					console.log("err", data);
-				});
+		return userPrivate.getTokenByCode(code);
 	}; 
 	
 	userPublic.resetParams = function() {
@@ -40,14 +18,7 @@ app.factory('User', function($http, $q) {
 	};
 	
 	userPublic.getContent = function(path) {
-		var deferred = $q.defer();
-		userPrivate.request(path).then(
-			function(data) {
-				deferred.resolve(data);
-			}, function(data) {
-				deferred.reject(data);}
-		);
-		return deferred.promise;
+		return userPrivate.request(path);
 	};
 	
 	userPublic.isAuthorized = function() {
@@ -67,6 +38,28 @@ app.factory('User', function($http, $q) {
 	};
 	
 	// private
+	userPrivate.getTokenByCode = function(code) {
+		var params = {
+				host : "oauth.yandex.ru",
+				path : "/token",
+				method : "POST",
+				params : {
+					code : code,
+					}	
+				};
+		var deferred = $q.defer();
+		return $http.post("/login", params).then(function(data) {
+			if (!data.data.isAuthorized) {
+				deferred.reject(data);
+				return deferred.promise;
+			} else 
+				return userPrivate.getUserData();
+			}, function(data) {
+				deferred.reject(data);
+				return deferred.promise;
+			});	
+	};
+	
 	userPrivate.getUserData = function() {
 		var params = {
 				host : "login.yandex.ru",
@@ -74,12 +67,12 @@ app.factory('User', function($http, $q) {
 				method : "POST",
 				//params : {}	
 		}
-		return $http.post("/request1", params).then(function(data) {
+		return $http.post("/request", params).then(function(data) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
-			//return data;
-		}, function(data) {console.log("err", data); return data;});
+			userPrivate.isAuthorized = true; 
+		});
 	};
 	
 	userPrivate.request = function(path) {
@@ -103,7 +96,6 @@ app.factory('User', function($http, $q) {
 		});
 		return deferred.promise;
 	};
-	
 	
 	userPublic.resetParams();
 	return userPublic;
