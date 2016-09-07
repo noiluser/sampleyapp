@@ -1,4 +1,4 @@
-app.controller("ExplorerController", function($scope, $routeParams, User) {
+app.controller("ExplorerController", function($scope, $routeParams, $location, User) {
 	"ngInject"
 	$scope.isUserLoggedIn = false;
 	$scope.items = [];
