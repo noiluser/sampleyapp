@@ -1,16 +1,15 @@
 <div class="container navigator" ng-controller='NavController'>
 	<div class="row" ng-show="isUserLoggedIn">
 		<div class="col-xs-12">
-			<div class="text-center">
-				<a href="/disk/">
-					<i class="glyphicon glyphicon-home"></i>
-				</a>
-				
-				<span ng-repeat="nav in paths">
-					<i class="glyphicon glyphicon-chevron-right"></i>
-					<a href="javascript:void(0);" ng-click="navigateByIndex($index)">{{nav}}</a>
-				</span>
-			</div>
+			<a href="/disk/">
+				<i class="glyphicon glyphicon-home"></i>
+			</a>
+			
+			<span ng-repeat="nav in paths">
+				<i class="glyphicon glyphicon-chevron-right"></i>
+				<a href="javascript:void(0);" ng-click="navigateByIndex($index)">{{nav}}</a>
+			</span>
+
 		</div>
 	</div>
 </div>	

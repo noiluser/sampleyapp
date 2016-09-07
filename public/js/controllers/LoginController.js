@@ -19,6 +19,8 @@ app.controller("AuthController", function($scope, $location, $window, $http, $co
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
 		$scope.isUserLoggedIn = val;
+		if (val)
+			$location.path( "/disk/" );
 	});	
 	$scope.$watch(function(){ return User.getPhoto(); }, function(val){
 		$scope.photo = "https://avatars.yandex.net/get-yapic/" + val + "/islands-middle";
