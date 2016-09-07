@@ -10,9 +10,8 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val, oldValue){
-	    if(val && !angular.equals(val, oldValue)){
+	    if(val)
 	    	$scope.$emit("loadFolder");
-	    }		
 	});
 	
 	$scope.$on('loadFolder', function(event) {
@@ -20,8 +19,8 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		.then(function(data) {
 			console.log("s", data._embedded.items);
 			$scope.isContentLoaded = true;
-			/*if (data.hasOwnProperty('_embedded'))
-				$scope.items = data._embedded.items;*/
+			if (data.hasOwnProperty('_embedded'))
+				$scope.items = data._embedded.items;
 		},	function(data) {
 			console.log("e", data);
 		});

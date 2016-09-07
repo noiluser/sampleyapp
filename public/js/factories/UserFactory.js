@@ -28,7 +28,7 @@ app.factory('User', function($http, $q) {
 				console.log("not authorized");
 			}
 		}, function(data) {
-			// post error
+			// login post error
 			deferred.reject(data);
 		});
 		return deferred.promise;
