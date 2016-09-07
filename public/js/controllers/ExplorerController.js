@@ -18,11 +18,11 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 	$scope.$on('loadFolder', function(event) {
 		User.getContent($scope.path)
 		.then(function(data) {
-			console.log("s", data);
+			console.log("s", data._embedded.items);
 			$scope.isContentLoaded = true;
 			if (data.hasOwnProperty('_embedded'))
 				$scope.items = data._embedded.items;
-			$scope.$apply();
+			
 		},	function(data) {
 			console.log("e", data);
 		});
