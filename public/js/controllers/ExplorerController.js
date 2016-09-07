@@ -10,26 +10,19 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val, oldValue){
-		if(!angular.equals(val, oldValue)){console.log("NOT?! same?")};
 	    if(val && !angular.equals(val, oldValue)){
 	    	$scope.$emit("loadFolder");
-	        //return; // simply skip that
-	    	console.log('NOT same');
 	    }		
-		/*console.log("auth", val, oldValue);
-		if (val)
-			$scope.$emit("loadFolder");*/
 	});
 	
 	$scope.$on('loadFolder', function(event) {
 		User.getContent($scope.path)
 		.then(function(data) {
 			console.log("s", data);
-			$scope.$apply(function() {
-				$scope.isContentLoaded = true;
-				if (data.hasOwnProperty('_embedded'))
-					$scope.items = data._embedded.items;
-			});
+			$scope.isContentLoaded = true;
+			if (data.hasOwnProperty('_embedded'))
+				$scope.items = data._embedded.items;
+			$scope.$apply();
 		},	function(data) {
 			console.log("e", data);
 		});
