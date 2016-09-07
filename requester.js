@@ -6,7 +6,11 @@ var requester = {
 			var token_data = require("./access.json");
 			if (!request.body.hasOwnProperty('params'))
 				request.body.params = {};
-			request.body.params.oauth_token = token_data.access_token;
+			if (!request.body.hasOwnProperty('headers'))
+				request.body.headers = {};			
+			
+			request.body.headers['Authorization'] = "OAuth " + token_data.access_token;
+console.log(request.body.headers);			
 			getResponse(request.body, request.body.params, function(status, data) {
 				response.json(data);
 				return;
