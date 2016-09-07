@@ -13,25 +13,7 @@ app.factory('User', function($http, $q) {
 			}	
 		};
 		var deferred = $q.defer();
-		/*$http.post("/login", params).then(function(data) {
-			if (data.data.isAuthorized) {
-				console.log("authorized OK");
-				userPrivate.getUserData().then(function(data){
-					// getUserData success
-					userPrivate.isAuthorized = true;
-					deferred.resolve(data);
-				}, function(data){
-					// getUserData error
-					deferred.reject(data);
-				});
-			} else {
-				console.log("not authorized");
-			}
-		}, function(data) {
-			// login post error
-			deferred.reject(data);
-		});
-		return deferred.promise;*/
+
 		var deferred = $q.defer();
 		return $http.post("/login", params).then(function(data) {
 			if (!data.data.isAuthorized) {
@@ -42,7 +24,8 @@ app.factory('User', function($http, $q) {
 			}, function(data) {
 				deferred.reject(data);
 				return deferred.promise;
-			}).then(function() { 
+			}).then(function(data) { 
+				console.log("second then", data)
 				userPrivate.isAuthorized = true; 
 				});
 	}; 
@@ -92,16 +75,12 @@ app.factory('User', function($http, $q) {
 				method : "POST",
 				//params : {}	
 		}
-		//var deferred = $q.defer();
 		return $http.post("/request", params).then(function(data) {
+			console.log("fisrt then", data);
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
-		//	deferred.resolve(data.data);
-		}, function(data) {
-		//	deferred.reject(data);
 		});
-		//return deferred.promise;
 	};
 	
 	userPrivate.request = function(path) {
