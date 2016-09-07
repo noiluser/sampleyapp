@@ -10,10 +10,11 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val, oldValue){
-	    if(!angular.equals(val, oldValue)){
+		if(!angular.equals(val, oldValue)){console.log("NOT?! same?")};
+	    if(val && !angular.equals(val, oldValue)){
 	    	$scope.$emit("loadFolder");
 	        //return; // simply skip that
-	    	//console.log('same');
+	    	console.log('NOT same');
 	    }		
 		/*console.log("auth", val, oldValue);
 		if (val)
