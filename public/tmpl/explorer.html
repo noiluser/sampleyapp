@@ -16,9 +16,7 @@
 	
 	<div class="row" ng-show="isUserLoggedIn" ng-repeat="item in items">
 		<div class="col-xs-12">
-			<div class="text-center">
-				<a ng-class="{'folder' : item.type == 'dir', 'file' : item.type == 'file'}" href="/disk/{{item.path}}">{{item.name}}</a>
-			</div>
+				<a ng-class="{'folder' : item.type == 'dir', 'file' : item.type == 'file'}" href="/disk/{{item.path | cutDisk}}">{{item.name}}</a>
 		</div>
 	</div>
 	
