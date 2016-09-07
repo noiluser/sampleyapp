@@ -2,11 +2,25 @@
 	<div class="row" ng-show="!isUserLoggedIn">
 		<div class="col-xs-12">
 			<div class="text-center">
+				Loading....
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="isUserLoggedIn">
+		<div class="col-xs-12">
+			<div class="text-center">
 				{{path}}
 			</div>
 		</div>
 	</div>
 	
+	<div class="row" ng-show="isUserLoggedIn" ng-repeat="item in items">
+		<div class="col-xs-12">
+			<div class="text-center">
+				<a ng-class="{'folder' : item.type == 'dir', 'file' : item.type == 'file'}" href="/disk/{{item.path}}">{{item.name}}</a>
+			</div>
+		</div>
+	</div>
 	
 	
 </div>

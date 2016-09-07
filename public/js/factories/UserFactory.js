@@ -75,7 +75,7 @@ app.factory('User', function($http) {
 				//params : {}	
 		}
 		$http.post("/request", params).then(function(data) {
-			console.log(data.data);
+			callback(data.data);
 		})
 	};
 	

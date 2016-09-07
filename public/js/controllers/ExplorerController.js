@@ -1,6 +1,8 @@
 app.controller("ExplorerController", function($scope, $routeParams, User) {
 	"ngInject"
 	$scope.isUserLoggedIn = false;
+	$scope.items = [];
+	
 	if ($routeParams.path) 
 		$scope.path = $routeParams.path;
 	else 
@@ -17,7 +19,7 @@ app.controller("ExplorerController", function($scope, $routeParams, User) {
 	
 	$scope.$on('loadFolder', function(event) {
 		User.getContent($scope.path, function(content) {
-			
+			$scope.items = content._embedded.items;
 		});
 	});
 });
