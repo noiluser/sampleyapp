@@ -24,4 +24,16 @@ app.controller("ExplorerController", function($scope, $routeParams, User) {
 				$scope.items = content._embedded.items;
 		});
 	});
+	
+	$scope.navigateByIndex = function(index) {
+		if (index < $scope.paths.length) {
+			var navigator = "";
+			for(var i = 0; i < index; i++) {
+				navigator += "/" + $scope.paths[index];
+			};
+			$location.path( "/disk" + navigator);
+		} else {
+			console.log("error: index=" + index + " is out of bounds (path length is " + $scope.paths.length + ")");
+		}
+	};
 });
