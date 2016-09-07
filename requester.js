@@ -1,5 +1,7 @@
 var config = require('./config/conf');
 var fs = require("fs");
+var querystring = require("querystring");
+var https = require("https");
 
 var requester = {
 		request : function(request, response) {
@@ -15,6 +17,22 @@ var requester = {
 				return;
 			});
 		},
+		
+		navigate : function(request, response) {
+			var token_data = require("./access.json");
+			if (!request.body.hasOwnProperty('params'))
+				request.body.params = {};
+			if (!request.body.hasOwnProperty('headers'))
+				request.body.headers = {};			
+			request.body.headers['Authorization'] = "OAuth " + token_data.access_token;
+			if (request.body.hasOwnProperty('navigate')) {
+				request.body.path += querystring.stringify(request.body.navigate);
+			};
+			getResponse(request.body, request.body.params, function(status, data) {
+				response.json(data);
+				return;
+			});
+		},		
 		
 		login : function(request, response) {
 			request.body.params.grant_type = "authorization_code";
@@ -37,8 +55,8 @@ var requester = {
 		}
 }
 
-var https = require("https");
-var querystring = require("querystring");
+
+
 var getResponse = function(options, data, onResult) {
 
     var req = https.request(options, function(res)

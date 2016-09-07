@@ -32,6 +32,7 @@ app.get("/disk/*", function(req, res){
 
 //
 app.post('/request', requester.request);
+app.post('/navigate', requester.navigate);
 app.post('/login', requester.login);
 app.get('/clientid', requester.clientid);
 

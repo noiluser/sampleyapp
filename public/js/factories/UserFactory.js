@@ -70,11 +70,12 @@ app.factory('User', function($http) {
 		if (!path) path = "";
 		var params = {
 				host : "cloud-api.yandex.net",
-				path : "/v1/disk/resources?path=disk:/" + path,
+				path : "/v1/disk/resources?path=disk:/",
 				method : "GET",
+				navigate : path,
 				//params : {}	
 		}
-		$http.post("/request", params).then(function(data) {
+		$http.post("/navigate", params).then(function(data) {
 			callback(data.data);
 		})
 	};
