@@ -10,11 +10,13 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
+		console.log("auth");
 		if (val)
 			$scope.$emit("loadFolder");
 	});
 	
 	$scope.$on('loadFolder', function(event) {
+		console.log("load");
 		User.getContent($scope.path/*, function(content) {
 			$scope.isContentLoaded = true;
 			if (content.hasOwnProperty('_embedded'))
