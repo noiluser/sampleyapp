@@ -3,7 +3,7 @@ app.factory('User', function($http) {
 	var userPrivate = new Object(); 
 
 	// Public
-	userPublic.setCode = function(code, cb) {
+	userPublic.setCode = function(code, callback) {
 		var params = {
 		host : "oauth.yandex.ru",
 		path : "/token",
@@ -16,7 +16,7 @@ app.factory('User', function($http) {
 			if (data.data.isAuthorized) {
 				console.log("authorized OK");
 				userPrivate.isAuthorized = true;
-				userPrivate.getUserData(cb);
+				userPrivate.getUserData(callback);
 			} else {
 				console.log("not authorized");
 			}
@@ -51,7 +51,7 @@ app.factory('User', function($http) {
 	};
 	
 	// private
-	userPrivate.getUserData = function(cb) {
+	userPrivate.getUserData = function(callback) {
 		var params = {
 				host : "login.yandex.ru",
 				path : "/info",
@@ -62,7 +62,8 @@ app.factory('User', function($http) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
-			//console.log(data.data);
+			if (callback) 
+				callback();
 		})
 	};
 	

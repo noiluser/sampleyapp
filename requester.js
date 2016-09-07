@@ -28,9 +28,6 @@ var requester = {
 			if (request.body.hasOwnProperty('navigate')) {
 				request.body.path += encodeURIComponent(request.body.navigate);
 			};
-
-console.log("PATH",request.body.path, "NAV", request.body.navigate, encodeURIComponent(request.body.navigate));
-
 			getResponse(request.body, request.body.params, function(status, data) {
 				response.json(data);
 				return;
