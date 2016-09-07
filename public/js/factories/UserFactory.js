@@ -76,7 +76,11 @@ app.factory('User', function($http) {
 				//params : {}	
 		}
 		$http.post("/navigate", params).then(function(data) {
-			callback(data.data);
+			if (data.data.hasOwnProperty('error')) {
+				// error
+			} else {
+				callback(data.data);
+			}
 		})
 	};
 	
