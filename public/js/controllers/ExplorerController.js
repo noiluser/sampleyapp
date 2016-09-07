@@ -28,7 +28,7 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 	$scope.navigateByIndex = function(index) {
 		if (index < $scope.paths.length) {
 			var navigator = "";
-			for(var i = 0; i < index; i++) {
+			for(var i = 0; i < index; ++i) {
 				navigator += "/" + $scope.paths[index];
 			};
 			$location.path( "/disk" + navigator);
