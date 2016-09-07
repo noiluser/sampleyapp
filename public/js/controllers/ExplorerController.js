@@ -9,8 +9,12 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 	else 
 		$scope.path = "";
 	
-	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
-		console.log("auth", val);
+	$scope.$watch(function(){ return User.isAuthorized(); }, function(val, oldValue){
+	    if(angular.equals(val, oldValue)){
+	        //return; // simply skip that
+	    	console.log('same');
+	    }		
+		console.log("auth", val, oldValue);
 		if (val)
 			$scope.$emit("loadFolder");
 	});

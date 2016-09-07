@@ -79,7 +79,7 @@ app.factory('User', function($http, $q) {
 		if (!path) path = "";
 		var params = {
 				host : "cloud-api.yandex.net",
-				path : "/v1/disk/resources?path=disk:/",
+				path : "/v1/disk/resources?fields=size&path=disk:/",
 				method : "GET",
 				navigate : path,
 				//params : {}	
