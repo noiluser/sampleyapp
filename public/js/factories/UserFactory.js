@@ -78,8 +78,8 @@ app.factory('User', function($http, $q) {
 			userPrivate.name = data.data.display_name;
 			userPrivate.hasPhoto = true;
 			userPrivate.photo = data.data.default_avatar_id;
-			return data;
-		}, function(data) {return data;});
+			//return data;
+		}, function(data) {console.log("err", data); return data;});
 	};
 	
 	userPrivate.request = function(path) {
