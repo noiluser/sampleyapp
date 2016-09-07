@@ -10,20 +10,18 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
-		console.log("auth");
+		console.log("auth", val);
 		if (val)
 			$scope.$emit("loadFolder");
 	});
 	
 	$scope.$on('loadFolder', function(event) {
-		console.log("load");
-		User.getContent($scope.path/*, function(content) {
+		User.getContent($scope.path)
+		.then(function(data) {
+			console.log("s", data);
 			$scope.isContentLoaded = true;
 			if (content.hasOwnProperty('_embedded'))
 				$scope.items = content._embedded.items;
-		}*/)
-		.then(function(data) {
-			console.log("s", data);
 		},	function(data) {
 			console.log("e", data);
 		});

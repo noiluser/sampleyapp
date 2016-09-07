@@ -87,12 +87,12 @@ app.factory('User', function($http, $q) {
 		var deferred = $q.defer();
 		$http.post("/navigate", params).then(function(data) {
 			if (data.data.hasOwnProperty('error')) {
-				deferred.reject({ success: false, data: data.data});		
+				deferred.reject(data.data);		
 			} else {
-				deferred.resolve({ success: true, data: data.data});
+				deferred.resolve(data.data);
 			}
 		}).then(function(data) {
-			deferred.reject({ success: false, data: data});
+			deferred.reject(data.data);
 		});
 		return deferred.promise;
 	};
