@@ -26,10 +26,10 @@ var requester = {
 				request.body.headers = {};			
 			request.body.headers['Authorization'] = "OAuth " + token_data.access_token;
 			if (request.body.hasOwnProperty('navigate')) {
-				request.body.path += querystring.stringify(request.body.navigate);
+				request.body.path += encodeURIComponent(request.body.navigate);
 			};
 
-console.log("PATH",request.body.path, "NAV", request.body.navigate, querystring.stringify(request.body.navigate));
+console.log("PATH",request.body.path, "NAV", request.body.navigate, encodeURIComponent(request.body.navigate));
 
 			getResponse(request.body, request.body.params, function(status, data) {
 				response.json(data);
