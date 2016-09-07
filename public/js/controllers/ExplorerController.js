@@ -22,7 +22,7 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 			$scope.isContentLoaded = true;
 			if (data.hasOwnProperty('_embedded'))
 				$scope.items = data._embedded.items;
-			
+			console.log("s", $scope.isContentLoaded, $scope.items);
 		},	function(data) {
 			console.log("e", data);
 		});

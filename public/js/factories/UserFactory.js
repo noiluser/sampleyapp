@@ -24,10 +24,13 @@ app.factory('User', function($http, $q) {
 	}; 
 	
 	userPublic.resetParams = function() {
+		var deferred = $q.defer();
 		userPrivate.isAuthorized = false;
 		userPrivate.name = "";
 		userPrivate.hasPhoto = false;
 		userPrivate.photo = "";
+		deferred.resolve({isLoggedOut : true});
+		return deferred.promise;
 	};
 	
 	userPublic.getContent = function(path) {
