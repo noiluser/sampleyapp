@@ -9,7 +9,12 @@
 	<div class="row" ng-show="isUserLoggedIn">
 		<div class="col-xs-12">
 			<div class="text-center">
-				{{path}}
+				<a href="javascript:void(0);">Disk:/</a>
+				
+				<a href="javascript:void(0);" ng-repeat="nav in paths">
+					{{nav}}
+				</a>
+				
 			</div>
 		</div>
 	</div>

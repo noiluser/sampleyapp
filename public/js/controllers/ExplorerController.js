@@ -3,9 +3,10 @@ app.controller("ExplorerController", function($scope, $routeParams, User) {
 	$scope.isUserLoggedIn = false;
 	$scope.items = [];
 	
-	if ($routeParams.path) 
+	if ($routeParams.path) {
 		$scope.path = $routeParams.path;
-	else 
+		$scope.paths = $routeParams.path.split('/');
+	} else 
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val){
