@@ -1,4 +1,4 @@
-app.controller("ExplorerController", function($scope, $routeParams, User) {
+app.controller("ExplorerController", function($scope, $routeParams, $location, User) {
 	"ngInject"
 
 	$scope.items = [];
@@ -21,4 +21,8 @@ app.controller("ExplorerController", function($scope, $routeParams, User) {
 	});
 	
 
+	$scope.navigate = function(path) {
+		var url = "/disk/" + path;
+		$location.path( url );
+	}
 });
