@@ -92,7 +92,7 @@ app.factory('User', function($http, $q) {
 				deferred.resolve(data.data);
 			}
 		}).then(function(data) {
-			deferred.reject(data.data);
+			deferred.reject(data);
 		});
 		return deferred.promise;
 	};

@@ -20,8 +20,8 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		.then(function(data) {
 			console.log("s", data);
 			$scope.isContentLoaded = true;
-			if (content.hasOwnProperty('_embedded'))
-				$scope.items = content._embedded.items;
+			if (data.hasOwnProperty('_embedded'))
+				$scope.items = data._embedded.items;
 		},	function(data) {
 			console.log("e", data);
 		});
