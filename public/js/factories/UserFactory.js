@@ -31,7 +31,9 @@ app.factory('User', function($http, $q) {
 	};
 	
 	userPublic.getContent = function(path) {
-		userPrivate.request(path);
+		var deferred = $q.defer();
+		userPrivate.request(path);//.then(function(data) {deferred.resolve({ success: true, data: data});}, function(data) {deferred.reject({ success: false, data: data});});
+		return deferred.promise;
 	};
 	
 	userPublic.isAuthorized = function() {
