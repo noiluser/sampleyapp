@@ -4,7 +4,7 @@
 	<div class="row" ng-repeat="item in items">
 		<div class="col-xs-12">
 				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk, item.type)">
-					<i class="glyphicon" ng-class="{'glyphicon-folder-close' : item.type == 'dir', 'glyphicon-file' : item.type == 'file'}"></i>
+					<img ng-src="item.preview || static/img/{{item.type}}.png">
 					{{item.name}} &nbsp; {{item.size | normalizedSize}}
 				</span>
 		</div>
