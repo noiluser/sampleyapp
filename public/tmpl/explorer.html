@@ -6,6 +6,13 @@
 				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk, item.type)">{{item.name}} &nbsp; {{item.size | normalizedSize}}</span>
 		</div>
 	</div>
+	<div class="row" ng-show="!items.length && isContentLoaded">
+		<div class="col-xs-12">
+			<div class="text-center placeholder">
+				Folder is empty
+			</div>
+		</div>
+	</div>
 	
 	<div class="row" ng-show="!isContentLoaded">
 		<div class="col-xs-12">
