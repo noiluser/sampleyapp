@@ -1,6 +1,6 @@
-<nav-directive ng-show="isUserLoggedIn"></nav-directive>
+<nav-directive ng-show="!isError"></nav-directive>
 
-<div class="container" ng-show="isUserLoggedIn">
+<div class="container">
 	<div class="row" ng-repeat="item in items">
 		<div class="col-xs-12">
 				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk, item.type)">{{item.name}} &nbsp; {{item.size | normalizedSize}}</span>
@@ -10,17 +10,8 @@
 	<div class="row" ng-show="!isContentLoaded">
 		<div class="col-xs-12">
 			<div class="text-center">
-				<img class="spinner" src="static/img/spinner.gif">
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container" ng-show="!isUserLoggedIn">
-	<div class="row" ng-show="!isContentLoaded">
-		<div class="col-xs-12">
-			<div class="text-center">
-				Access denied. Please login.
+				<img ng-show="!isError" class="spinner" src="static/img/spinner.gif">
+				<span ng-show="isError" ng-bind="message"></span>
 			</div>
 		</div>
 	</div>
