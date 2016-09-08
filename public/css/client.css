@@ -40,15 +40,9 @@ img {
 }
 
 .img-item {
-  width: 100px;
-  height: 100px;
-  overflow:hidden;
+
 }
 .img-item img {
 	margin: 0 auto;
-  height: 100%;
-  min-width: 100%;
-  left: 50%;
-  position: relative;
-  transform: translateX(-50%);
+
 }
