@@ -3,6 +3,7 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 
 	$scope.items = [];
 	$scope.isContentLoaded = false;
+	$scope.isUserLoggedIn = false;
 	
 	if ($routeParams.path)
 		$scope.path = $routeParams.path;
@@ -10,8 +11,12 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 		$scope.path = "";
 	
 	$scope.$watch(function(){ return User.isAuthorized(); }, function(val, oldValue){
-	    if(val)
+	    if(val) {
+	    	$scope.isUserLoggedIn = true;
 	    	$scope.$emit("loadFolder");
+	    } else {
+	    	$scope.isUserLoggedIn = false;
+	    }
 	});
 	
 	$scope.$on('loadFolder', function(event) {
