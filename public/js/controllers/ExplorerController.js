@@ -27,6 +27,11 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 			$scope.isContentLoaded = true;
 			if (data.hasOwnProperty('_embedded'))
 				$scope.items = data._embedded.items;
+			$scope.items.forEach(function(item) {
+				if (!item.preview) {
+					item.preview = "static/img/" + item.type + ".png";
+				}
+			});
 		},	function(data) {
 			$scope.isError = true;
 			$scope.message = data.message;
