@@ -27,7 +27,8 @@ app.controller("ExplorerController", function($scope, $routeParams, $location, U
 			$scope.isContentLoaded = true;
 			if (data.hasOwnProperty('_embedded'))
 				$scope.items = data._embedded.items;
-			if (!$scope.items.length) {
+console.log($scope.items.length, $scope.items);			
+			if ($scope.items.length == 0) {
 				$scope.isError = true;
 				$scope.message = "Folder is empty";
 			}
