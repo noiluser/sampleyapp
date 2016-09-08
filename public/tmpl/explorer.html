@@ -1,11 +1,15 @@
 <nav-directive></nav-directive>
 
 <div class="container">
-	<div class="row" ng-repeat="item in items">
-		<div class="col-xs-12">
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" ng-repeat="item in items">
 				<span ng-class="item.type" ng-click="navigate(item.path | cutDisk, item.type)">
-					<img ng-src="{{item.preview}}">
-					{{item.name}} &nbsp; {{item.size | normalizedSize}}
+					<div>
+						<img ng-src="{{item.preview}}">
+					</div>
+					<div>
+						{{item.name}} &nbsp; {{item.size | normalizedSize}}
+					</div>
 				</span>
 		</div>
 	</div>
