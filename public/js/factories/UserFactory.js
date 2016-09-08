@@ -1,4 +1,4 @@
-app.factory('User', function($http, $q) {
+app.factory('User', function($http, $q, $cookies) {
 	var userPublic = new Object();
 	var userPrivate = new Object(); 
 

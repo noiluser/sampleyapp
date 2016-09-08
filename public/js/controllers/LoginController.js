@@ -1,4 +1,4 @@
-app.controller("AuthController", function($scope, $location, $window, $http, $cookies, User) {
+app.controller("AuthController", function($scope, $location, $window, $http, User) {
 	"ngInject"
 	$scope.paramsToString = $scope.$parent.paramsToString;
 	

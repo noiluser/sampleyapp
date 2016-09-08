@@ -17,3 +17,7 @@ app.config(function($routeProvider, $locationProvider) {
 	    })
     $locationProvider.html5Mode(true);
 });
+
+// TODO:
+// 1. Handle token in client
+// 2. Create nice view for explorer
