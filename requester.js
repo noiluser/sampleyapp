@@ -5,13 +5,8 @@ var https = require("https");
 
 var requester = {
 		request : function(request, response) {
-			//var token_data = require("./access.json");
 			if (!request.body.hasOwnProperty('params'))
 				request.body.params = {};
-			//if (!request.body.hasOwnProperty('headers'))
-			//	request.body.headers = {};			
-			//request.body.headers['Authorization'] = "OAuth " + token_data.access_token;
-			
 			getResponse(request.body, request.body.params, function(status, data) {
 				response.json(data);
 				return;
@@ -39,10 +34,8 @@ var requester = {
 			request.body.params.client_id = config.get('client_id');
 			request.body.params.client_secret = config.get('client_secret');
 			getResponse(request.body, request.body.params, function(status, data) {
-				//fs.writeFile( "access.json", JSON.stringify( data ), "utf8", function() {
-					response.json(data);
-					return;
-				//} );				
+				response.json(data);
+				return;				
 			});
 		},		 
 		

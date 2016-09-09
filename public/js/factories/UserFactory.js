@@ -3,6 +3,12 @@ app.factory('User', function($http, $q, $cookies) {
 	var userPrivate = new Object(); 
 
 	// Public
+	userPublic.checkCookiesToken = function() {
+		var token = $cookies.get("YaDiskAccess");
+		userPrivate.token = token;
+		return userPrivate.getUserData();
+	}; 
+	
 	userPublic.setCode = function(code) {
 		return userPrivate.getTokenByCode(code);
 	}; 
@@ -49,11 +55,13 @@ app.factory('User', function($http, $q, $cookies) {
 				};
 		var deferred = $q.defer();
 		return $http.post("/login", params).then(function(data) {
-			console.log(data);
-			if (!data.data.isAuthorized) {
+			//data.data.expires_in
+			if (!data.data.access_token) {
 				deferred.reject(data);
 				return deferred.promise;
 			} else 
+				userPrivate.token = data.data.access_token;
+				$cookies.put("YaDiskAccess", userPrivate.token);
 				return userPrivate.getUserData();
 			}, function(data) {
 				deferred.reject(data);
@@ -66,7 +74,7 @@ app.factory('User', function($http, $q, $cookies) {
 				host : "login.yandex.ru",
 				path : "/info",
 				method : "POST",
-				headers : {'Authorization' : "OAuth " /*+ token */}
+				headers : {'Authorization' : "OAuth " + userPrivate.token}
 				//params : {}	
 		}
 		return $http.post("/request", params).then(function(data) {
@@ -84,7 +92,7 @@ app.factory('User', function($http, $q, $cookies) {
 				path : "/v1/disk/resources?path=disk:/",
 				method : "GET",
 				navigate : path,
-				headers : {'Authorization' : "OAuth " /*+ token */}
+				headers : {'Authorization' : "OAuth " + userPrivate.token}
 				//params : {}	
 		}
 		var deferred = $q.defer();

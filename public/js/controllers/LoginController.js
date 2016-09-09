@@ -7,7 +7,9 @@ app.controller("AuthController", function($scope, $location, $window, $http, Use
 		User.setCode(code).then(function(data) {
 			$location.search('code', null)
 		});
-	}
+	} else {
+		User.checkCookiesToken();
+	};
 	
 	$scope.openTop = function() {
 		$location.path( "/");
