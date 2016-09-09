@@ -8,10 +8,11 @@ app.controller("NavController", function($scope, $routeParams, $location, User) 
 			$scope.isUserLoggedIn = false;
 		}
 	});
-	
+	$scope.paths = [];
 	if ($routeParams.path) {
 		$scope.path = $routeParams.path;
 		$scope.paths = $routeParams.path.split('/');
+		console.log($scope.paths);
 	} else {
 		$scope.path = "";
 	}
