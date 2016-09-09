@@ -99,7 +99,7 @@ app.factory('User', function($http, $q, $cookies) {
 		if (!path) path = "";
 		var params = {
 				host : "cloud-api.yandex.net",
-				path : "/v1/disk/resources?path=disk:/",
+				path : "/v1/disk/resources?limit=999999&path=disk:/",
 				method : "GET",
 				navigate : path,
 				headers : {'Authorization' : "OAuth " + userPrivate.token}
