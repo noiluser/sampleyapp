@@ -35,10 +35,10 @@
 }
 
 @media (max-width: 768px) { 
-	/*img {
+	img {
 		max-width : 40px;
 		max-height : 40px;	
-	}*/
+	}
 	
 	.disk-item {
 		margin-bottom : 5px;
