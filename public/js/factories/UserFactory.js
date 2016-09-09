@@ -21,7 +21,6 @@ app.factory('User', function($http, $q, $cookies) {
 	
 	userPublic.resetParams = function() {
 		var deferred = $q.defer();
-		$cookies.remove("YaDiskAccess");
 		userPrivate.isAuthorized = false;
 		userPrivate.name = "";
 		userPrivate.hasPhoto = false;
@@ -29,6 +28,10 @@ app.factory('User', function($http, $q, $cookies) {
 		deferred.resolve({isLoggedOut : true});
 		return deferred.promise;
 	};
+	
+	userPublic.clearCookies = function() {
+		$cookies.remove("YaDiskAccess");
+	}
 	
 	userPublic.getContent = function(path) {
 		return userPrivate.request(path);

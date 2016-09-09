@@ -50,8 +50,10 @@ app.controller("AuthController", function($scope, $location, $window, $http, Use
 	
 	$scope.logout = function() {
 		User.resetParams().then(function(data) {
-			if (data.isLoggedOut)
+			if (data.isLoggedOut) {
+				User.clearCookies();
 				$location.path( "/");
+			}
 		});
 	};
 
