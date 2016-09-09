@@ -5,7 +5,7 @@
 				<i class="glyphicon glyphicon-home"></i>
 			</a>
 			
-			<span ng-repeat="nav in paths">
+			<span ng-repeat="nav in paths track by $index">
 				<i class="glyphicon glyphicon-chevron-right"></i>
 				<a href="javascript:void(0);" ng-click="navigateByIndex($index)">{{nav}}</a>
 			</span>
