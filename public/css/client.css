@@ -45,6 +45,10 @@
 	}
 }
 
+.item-label {
+	word-wrap: break-word;
+}
+
 @media (min-width: 768px) { 
 	img {
 		max-width : 90px;
