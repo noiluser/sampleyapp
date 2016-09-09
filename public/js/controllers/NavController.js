@@ -8,21 +8,21 @@ app.controller("NavController", function($scope, $routeParams, $location, User) 
 			$scope.isUserLoggedIn = false;
 		}
 	});
+	
 	$scope.paths = [];
+	
 	if ($routeParams.path) {
 		$scope.path = $routeParams.path;
 		$scope.paths = $routeParams.path.split('/');
-		console.log($scope.paths);
 	} else {
 		$scope.path = "";
 	}
 	
 	$scope.navigateByIndex = function(index) {
-		console.log($scope.paths, index);
 		if (index < $scope.paths.length) {
 			var navigator = "";
 			for(var i = 0; i <= index; i++) {
-				navigator += "/" + $scope.paths[index];
+				navigator += "/" + $scope.paths[i];
 			};
 			$location.path( "/disk" + navigator);
 		} else {
