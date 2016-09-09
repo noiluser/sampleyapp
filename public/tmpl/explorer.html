@@ -3,10 +3,16 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 disk-item" ng-repeat="item in items" ng-class="item.type" ng-click="navigate(item.path | cutDisk, item.type)">
-			<div class="text-center img-item">
-				<img ng-src="{{item.preview}}" class="img img-reponsive">
+			<div class="hidden-xs">
+				<div class="text-center">
+					<img ng-src="{{item.preview}}" class="img img-reponsive">
+				</div>
+				<div class="text-center">
+					{{item.name}}{{item.size | normalizedSize}}
+				</div>
 			</div>
-			<div class="text-center">
+			<div class="visible-xs">
+				<img ng-src="{{item.preview}}" class="img img-reponsive img-xs">
 				{{item.name}} &nbsp; {{item.size | normalizedSize}}
 			</div>
 		</div>

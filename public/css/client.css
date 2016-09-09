@@ -34,15 +34,24 @@
 	color : grey;
 }
 
-img {
-	max-width : 90px;
-	max-height : 90px;
+@media (max-width: 768px) { 
+	img {
+		max-width : 40px;
+		max-height : 40px;	
+	}
+	
+	.disk-item {
+		margin-bottom : 5px;
+	}
 }
 
-.img-item {
-
-}
-.img-item img {
-	margin: 0 auto;
-
+@media (min-width: 768px) { 
+	img {
+		max-width : 90px;
+		max-height : 90px;
+	}
+	
+	.disk-item {
+		margin-bottom : 15px;
+	}
 }
