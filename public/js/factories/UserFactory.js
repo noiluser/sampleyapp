@@ -21,6 +21,7 @@ app.factory('User', function($http, $q, $cookies) {
 	
 	userPublic.resetParams = function() {
 		var deferred = $q.defer();
+		$cookies.remove("YaDiskAccess");
 		userPrivate.isAuthorized = false;
 		userPrivate.name = "";
 		userPrivate.hasPhoto = false;
