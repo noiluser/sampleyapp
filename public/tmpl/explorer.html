@@ -11,14 +11,18 @@
 					{{item.name}}
 				</div>
 			</div>
-			<div class="visible-xs">
-				<img ng-src="{{item.preview}}" class="img img-reponsive img-xs">
-				<span class="item-label">
-					{{item.name}}
-					<span ng-show="item.size">
-						({{item.size | normalizedSize}})
+			<div class="visible-xs row">
+				<div class="col-xs-3">
+					<img ng-src="{{item.preview}}" class="img img-reponsive img-xs">
+				</div>
+				<div class="col-xs-9">
+					<span class="item-label">
+						{{item.name}}
+						<span ng-show="item.size">
+							({{item.size | normalizedSize}})
+						</span>
 					</span>
-				</span>
+				</div>
 			</div>
 		</div>
 	</div>
