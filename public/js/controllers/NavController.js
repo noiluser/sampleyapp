@@ -17,6 +17,7 @@ app.controller("NavController", function($scope, $routeParams, $location, User) 
 	}
 	
 	$scope.navigateByIndex = function(index) {
+		console.log($scope.paths, index);
 		if (index < $scope.paths.length) {
 			var navigator = "";
 			for(var i = 0; i <= index; i++) {

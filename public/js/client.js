@@ -19,5 +19,5 @@ app.config(function($routeProvider, $locationProvider) {
 });
 
 // TODO:
-// 1. Handle token in client
-// 2. Create nice view for explorer
+// 1. navigation path issues
+// 2. text overlps
