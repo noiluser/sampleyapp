@@ -14,12 +14,8 @@ var requester = {
 		},
 		
 		navigate : function(request, response) {
-			var token_data = require("./access.json");
 			if (!request.body.hasOwnProperty('params'))
 				request.body.params = {};
-			if (!request.body.hasOwnProperty('headers'))
-				request.body.headers = {};			
-			request.body.headers['Authorization'] = "OAuth " + token_data.access_token;
 			if (request.body.hasOwnProperty('navigate')) {
 				request.body.path += encodeURIComponent(request.body.navigate);
 			};
