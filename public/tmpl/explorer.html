@@ -3,12 +3,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 disk-item" ng-repeat="item in items" ng-class="item.type" ng-click="navigate(item.path | cutDisk, item.type)">
-			<div class="hidden-xs">
+			<div class="hidden-xs" title="{{item.name}} &#013;Size: {{item.size | normalizedSize}}">
 				<div class="text-center">
 					<img ng-src="{{item.preview}}" class="img img-reponsive">
 				</div>
 				<div class="text-center item-label">
-					{{item.name}} &nbsp; {{item.size | normalizedSize}}
+					{{item.name}}
 				</div>
 			</div>
 			<div class="visible-xs">

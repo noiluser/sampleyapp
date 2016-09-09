@@ -17,7 +17,3 @@ app.config(function($routeProvider, $locationProvider) {
 	    })
     $locationProvider.html5Mode(true);
 });
-
-// TODO:
-// 1. navigation path issues
-// 2. text overlps

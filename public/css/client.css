@@ -34,6 +34,13 @@
 	color : grey;
 }
 
+.item-label {
+	display : block;
+    white-space : nowrap;
+    overflow : hidden;
+    text-overflow : ellipsis;
+}
+
 @media (max-width: 768px) { 
 	img {
 		max-width : 40px;
@@ -45,10 +52,6 @@
 	}
 }
 
-.item-label {
-	word-wrap: break-word;
-}
-
 @media (min-width: 768px) { 
 	img {
 		max-width : 90px;
@@ -58,4 +61,7 @@
 	.disk-item {
 		margin-bottom : 15px;
 	}
+	
 }
+
+

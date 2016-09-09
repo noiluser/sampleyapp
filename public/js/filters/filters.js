@@ -17,7 +17,7 @@ app.filter('normalizedSize', function () {
 			var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 			var i = Math.floor(Math.log(item) / Math.log(k));
 			
-			res = "(" + parseFloat((item / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i] + ")";
+			res = parseFloat((item / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 				
 			return res;
 		} else {
