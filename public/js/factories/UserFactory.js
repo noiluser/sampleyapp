@@ -5,8 +5,14 @@ app.factory('User', function($http, $q, $cookies) {
 	// Public
 	userPublic.checkCookiesToken = function() {
 		var token = $cookies.get("YaDiskAccess");
-		userPrivate.token = token;
-		return userPrivate.getUserData();
+		if (token) {
+			userPrivate.token = token;
+			return userPrivate.getUserData();
+		} else {
+			var deferred = $q.defer();
+			deferred.reject();
+			return deferred.promise;
+		}
 	}; 
 	
 	userPublic.setCode = function(code) {
