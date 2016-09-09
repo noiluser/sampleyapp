@@ -43,6 +43,10 @@
 	.disk-item {
 		margin-bottom : 5px;
 	}
+	
+	.item-label {
+		word-wrap: break-word;
+	}
 }
 
 @media (min-width: 768px) { 
