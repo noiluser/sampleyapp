@@ -49,6 +49,7 @@ app.factory('User', function($http, $q, $cookies) {
 				};
 		var deferred = $q.defer();
 		return $http.post("/login", params).then(function(data) {
+			console.log(data);
 			if (!data.data.isAuthorized) {
 				deferred.reject(data);
 				return deferred.promise;
@@ -65,6 +66,7 @@ app.factory('User', function($http, $q, $cookies) {
 				host : "login.yandex.ru",
 				path : "/info",
 				method : "POST",
+				headers : {'Authorization' : "OAuth " /*+ token */}
 				//params : {}	
 		}
 		return $http.post("/request", params).then(function(data) {
@@ -82,6 +84,7 @@ app.factory('User', function($http, $q, $cookies) {
 				path : "/v1/disk/resources?path=disk:/",
 				method : "GET",
 				navigate : path,
+				headers : {'Authorization' : "OAuth " /*+ token */}
 				//params : {}	
 		}
 		var deferred = $q.defer();
