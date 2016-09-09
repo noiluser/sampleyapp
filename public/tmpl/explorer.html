@@ -13,7 +13,9 @@
 			</div>
 			<div class="visible-xs">
 				<img ng-src="{{item.preview}}" class="img img-reponsive img-xs">
-				{{item.name}} &nbsp; {{item.size | normalizedSize}}
+				<span class="item-label">
+					{{item.name}} ({{item.size | normalizedSize}})
+				</span>
 			</div>
 		</div>
 	</div>
